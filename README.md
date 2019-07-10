@@ -7,8 +7,9 @@
 4. 工具类的封装:
     ZIPUtil
 5. 常用工具的使用demo:  
-    定时任务Scheduled的使用
-    日志程序logback的使用
+    定时任务Scheduled的使用  
+    日志程序logback的使用  
+    lombok的使用
 ## 使用步骤
 1. git clone https://github.com/zhao22/spring-mybatis-template.git
 2. 使用IDE导入项目
