@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seanzx.mapper.UserMapper">
+<resultMap id="UserVO" type="com.seanzx.vo.UserVO">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="password" column="password"/>
+    <result property="createDate" column="create_date"/>
+    <result property="department" column="d_name"/>
+    <result property="role" column="r_name"/>
+</resultMap>
+<select id="findUser" resultMap="UserVO">
+SELECT
+  u.id,
+  u.name,
+  u.create_date,
+  d.name as d_name,
+  r.name as r_name
+FROM
+  user u
+LEFT JOIN
+  department d
+ON
+  u.did = d.id
+LEFT JOIN
+  role r
+ON
+  u.rid = r.id
+WHERE
+  u.id = #{id}
+</select>
+<insert id="insert" parameterType="com.seanzx.po.UserPO"
+        useGeneratedKeys="true" keyProperty="id"
+>
+INSERT INTO
+  user
+(
+  name,
+  create_date,
+  password,
+  did,
+  rid
+)
+VALUES
+(
+  #{name},
+  #{createDate},
+  #{password},
+  #{did},
+  #{rid}
+);
+</insert>
+</mapper>
